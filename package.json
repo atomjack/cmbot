@@ -1,0 +1,27 @@
+{
+  "name": "cmbot",
+  "description": "A full featured bot for turntable.fm",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/atomjack/cmbot.git"
+  },
+  "author": "Chris Bellew <atomjack@gmail.com>",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "dependencies" : {
+    "crypto": ">= 0.0.3",
+    "xml2js": ">= 0.1.13",
+    "querystring": ">= 0.1.0",
+    "jquery": ">= 1.6.3",
+    "simple-lastfm": "*",
+    "dateformat": "*"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {}
+}
