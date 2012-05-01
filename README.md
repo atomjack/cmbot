@@ -2,9 +2,6 @@
 
 A full featured bot for turntable.fm
 
-## Installation
-    npm install cmbot
-
 ## Features
 * If desired, your bot will enforce a queue, as well as a configurable number of songs each DJ is allowed to play before the bot escorts them down, to give others a chance to DJ.
 * Can automatically add a song to it's queue if it gets enough votes, and mods can make the bot DJ. When the bot steps up to the decks, it will randomly put a song at the top of it's queue, and again once it finishes playing the song. This way it always plays a random song.
