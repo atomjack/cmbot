@@ -2,6 +2,9 @@
 
 A full featured bot for turntable.fm
 
+## Installation
+    npm install cmbot
+
 ## Features
 * If desired, your bot will enforce a queue, as well as a configurable number of songs each DJ is allowed to play before the bot escorts them down, to give others a chance to DJ.
 * Can automatically add a song to it's queue if it gets enough votes, and mods can make the bot DJ. When the bot steps up to the decks, it will randomly put a song at the top of it's queue, and again once it finishes playing the song. This way it always plays a random song.
@@ -263,16 +266,19 @@ Note: If a command is marked as **ACL Enforced**, initially the command is only 
 ### add ( username:string )
 
 **PM Only**
+
 Add a user to the queue. 
 
 ### addacl ( command:string username:string )
 
 **PM Only**
+
 Add access to a command to a user. 
 
 ### autodj ( [val:enum('on', 'off')] )
 
 **PM Only**
+
 Show or enable/disable autodj.
 
 ### awesome
@@ -294,6 +300,7 @@ Makes the bot DJ. If there are no open spots, the bot add itself to the queue (u
 ### echo ( text:string )
 
 **PM Only**
+
 Make the bot say something in chat. To have the bot do an action, just use `/echo /me does something`, for example.
 
 ### enforcement ( [val:enum('on', 'off')] )
@@ -303,6 +310,7 @@ Show or enable/disable queue enforcement.
 ### getnext
 
 **PM Only**
+
 Get the next X number of songs in the bot's queue. The number X is either the number in set_limit (ie, how many songs each DJ can play for their turn), or if that is set to false, 5.
 
 ### kick ( username:string [reason:string] )
@@ -316,56 +324,71 @@ The bot will lame the currently playing song.
 ### gettimezone
 
 **PM Only**
+
 Get your currently set timezone. If not set, modpm will display the time in the timezone the bot is configured as being in (default PST). 
 
 ### move ( username:string position:integer )
 
 **PM Only**
+
 Move a user into a new position in the queue. A position of `1` is the first spot in the queue, etc.
 
 ### profile
 
 **PM Only**
+
 **ACL Enforced**
+
 Set the bot's profile info. Usage: '/profile <profile field> <some text>'. Available fields: name, twitter, facebook, website, about, topartists, and hangout.
 
 ### remacl ( command:string username:string )
 
 **PM Only**
+
 **ACL Enforced**
+
 Remove access to a command for a certain user. 
 
 ### remove ( username:string )
 
 **PM Only**
+
 Remove a user from the queue.
 
 ### removesong ( position:integer )
 
 **PM Only**
+
 **ACL Enforced**
+
 Remove a song from the bot's queue/playlist. Position is the index provided by /searchplaylist.
 
 ### searchplaylist ( search_string:string )
 
 **PM Only**
+
 **ACL Enforced**
+
 Search the bot's playlist for matching songs. `search_string` must be at least 4 characters long. If multiple words are specified, each has to be contained in either the artist or song name. ie, `/searchplaylist foo bar` would match a song whose artist contains the word 'foo' and song title contains the word 'bar', or vice versa. Results will be in the form of `<index>:<artist> - <track>`.
 
 ### setcount ( username:string count:integer ) 
 
 **PM Only**
+
 Set the playcount for a particular user.
 
 ### setnext ( val:integer )
 
 **PM Only**
+
 **ACL Enforced**
+
 Move a song to the top of the bot's queue. `val` is the index returned by /searchplaylist.
 
 ### settimezone ( val:enum('EST', 'CST', 'MST', 'PST') )
 
 **PM Only**
+
 Set your timezone. The bot will display the adjusted time in modpm, and it will adjust for daylight savings time automatically.
 
 ### skip
@@ -383,21 +406,25 @@ Makes the bot cease informational messages for one round. ie, if the message int
 ### trigger ( key:string val:string )
 
 **PM Only**
+
 Set a trigger. `/trigger facebook http://www.facebook.com/groups/....` will cause the bot to say `http://www.facebook.com/groups/....` if anyone types `/facebook`, either in chat or in a PM to the bot.
 
 ### triggerban ( username:string )
 
 **PM Only**
+
 Ban a user from using any triggers for 24 hours. Useful if a user abuses triggers.
 
 ### triggerlimit ( trigger:string timelimit:integer )
 
 **PM Only**
+
 Set a time limit (in seconds) between triggers being executed, for a particular trigger. ie, `/trigger foo bar`, then `triggerlimit foo 5`, then a user types /foo, causing the bot to say 'bar', and if someone says '/foo' again the bot will not say 'bar' again if 5 seconds has not elapsed.
  
 ### tweet ( text:string )
 
 **PM Only**
+
 Causes the bot to tweet (if twitter credentials are provided).
 
 ### unban ( artist:string )
@@ -407,26 +434,31 @@ Unban an artist. Usage is the same as /ban.
 ### unshitlist ( username:string )
 
 **PM Only**
+
 Remove a user from the shitlist. 
 
 ### untrigger ( trigger:string )
 
 **PM Only**
+
 Remove a trigger.
 
 ### unwarn
 
 **PM Only**
+
 Cancels a warning.
 
 ### warn ( [val:enum('loading', 'genre')] )
 
 **PM Only**
+
 Warns a DJ that the song they are playing either is not loading, or that it is out of genre for the room. If the DJ does not skip the trick within 15 seconds, the bot will escort the DJ from the decks. Usage is '/warn' for a generic message, or '/warn genre' or '/warn loading' for a more specific one.
 
 ### votes
 
 **PM Only**
+
 Shows a list of which users have voted awesome and which have lamed. Turntable seems to have made it much harder to tell if a user has lamed, so only some lames show up for some reason.
 
 ### yoink
