@@ -430,8 +430,6 @@ Unban an artist. Usage is the same as /ban.
 
 ### unshitlist ( username:string )
 
-**PM Only**
-
 Remove a user from the shitlist. 
 
 ### untrigger ( trigger:string )
