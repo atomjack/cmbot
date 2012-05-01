@@ -1,7 +1,7 @@
 {
   "name": "cmbot",
   "description": "A full featured bot for turntable.fm",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/atomjack/cmbot.git"
@@ -15,12 +15,18 @@
     "node": "*"
   },
   "dependencies" : {
+  	"ttapi": "*",
+  	"sprintf": "*",
+  	"http-get": "*",
     "crypto": ">= 0.0.3",
     "xml2js": ">= 0.1.13",
     "querystring": ">= 0.1.0",
+    "ntwitter": "*",
     "jquery": ">= 1.6.3",
     "simple-lastfm": "*",
-    "dateformat": "*"
+    "dateformat": "*",
+    "prototype": "*",
+    "mysql": "*"
   },
   "devDependencies": {},
   "optionalDependencies": {}
