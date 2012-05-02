@@ -4,6 +4,7 @@ A full featured bot for turntable.fm
 
 ## Features
 * If desired, your bot will enforce a queue, as well as a configurable number of songs each DJ is allowed to play before the bot escorts them down, to give others a chance to DJ.
+* If a user on the queue leaves the room, the bot automatically marks them afk, skipping them when announcing who is next in the queue, and automatically marking them unafk when they return. If they don't return within 5 minutes, however, they are removed from the queue.
 * Can automatically add a song to it's queue if it gets enough votes, and mods can make the bot DJ. When the bot steps up to the decks, it will randomly put a song at the top of it's queue, and again once it finishes playing the song. This way it always plays a random song.
 * Modpm feature lets mods send a message that goes out to all the other mods currently in the room.
 * Automatically awesomes a song if it gets 5 awesomes or 20% of the room's population awesomes - whichever is lowest.
