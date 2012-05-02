@@ -331,6 +331,12 @@ Get your currently set timezone. If not set, modpm will display the time in the 
 
 Move a user into a new position in the queue. A position of `1` is the first spot in the queue, etc.
 
+### playlist
+
+**PM Only**
+
+Show how many songs the bot has in its playlist.
+
 ### profile
 
 **PM Only**
