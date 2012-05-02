@@ -21,6 +21,8 @@ Triggers are special commands any mod can set that will make the bot say a certa
 
 ## Setup
 
+First, run this command to install all the needed libraries: `npm install path xml2js querystring crypto dateformat ttapi sprintf http-get jquery ntwitter simple-lastfm`
+
 Obviously the bot should be a mod of the room it will be in, to be useful.
 
 To get the bot's auth, userid, and roomid, see [this link](http://alaingilbert.github.com/Turntable-API/bookmarklet.html). Use the bookmarklet after logging in to turntable as the user the bot will run as, then copy and paste the auth, roomid and userid values.
