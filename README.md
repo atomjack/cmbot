@@ -108,7 +108,7 @@ var mybot = new cmbot({
 		consumer_secret: 'xxxx',
 		access_token_key: 'xxxx',
 		access_token_secret: 'xxxx',
-		tweet_songs: true,
+		tweet_songs: false, // Set this to true to make the bot tweet each song play
 		tweet_text: '%djname% is spinning \'%song%\' by %artist% in the %roomname%: %roomurl%'
 	}
 });
