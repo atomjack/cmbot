@@ -281,6 +281,14 @@ Add access to a command to a user.
 
 Show or enable/disable autodj.
 
+### avatar ( [val:enum('chinesegirl', 'greengirl', 'redheadgirl', 'gingergirl', 'whiteboy', 'tangirl', 'tanboy', 'gingerboy', 'blackboy', 'greenbear', 'greybear', 'alienbear', 'aquabear', 'maroonbear', 'orangebear', 'blackbear', 'bluebear', 'lightbluecat', 'greencat', 'redcat', 'blondesuperboy', 'redheadsuperboy', 'hornedsuperboy', 'gorilla', 'boymonkey', 'girlmonkey', 'spaceman1', 'spaceman2', 'spaceman3', 'spaceman4', 'spaceman5', 'spaceman6', 'spaceman7', 'daftpunk1', 'daftpunk2')] )
+
+**PM Only** 
+
+**ACL Enforced**
+
+Set the bot's avatar.
+
 ### awesome
 
 The bot will awesome the currently playing track.
