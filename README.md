@@ -23,9 +23,13 @@ Triggers are special commands any mod can set that will make the bot say a certa
 ## Setup
 
 First, run this command to install all the needed libraries: `npm install path xml2js querystring crypto dateformat ttapi sprintf http-get jquery ntwitter simple-lastfm`
+
 If you'd like to log all song plays to mysql, run
+
 `npm install mysql`
+
 Or, if you'd like to log all song plays to a sqlite database (this is the easier option), run
+
 `npm install sqlite3`
 
 Obviously the bot should be a mod of the room it will be in, to be useful.
