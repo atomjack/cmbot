@@ -18,7 +18,9 @@ A full featured bot for turntable.fm
 
 ### Triggers
 
-Triggers are special commands any mod can set that will make the bot say a certain phrase. 
+Triggers are special commands any mod can set that will make the bot say a certain phrase. Any user can activate a trigger (to make the bot say the phrase), either in chat or PM. See [trigger](https://github.com/atomjack/cmbot#trigger--keystring-valstring-), [triggerban](https://github.com/atomjack/cmbot#triggerban--usernamestring-) and [triggerlimit](https://github.com/atomjack/cmbot#triggerban--usernamestring-)
+
+I'd be happy to help you get set up if you run into problems. You can usually find me in the [Chillout Mixer](http://turntable.fm/chillout_mixer_ambient_triphop).
 
 ## Setup
 
