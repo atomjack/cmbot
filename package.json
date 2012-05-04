@@ -1,7 +1,7 @@
 {
   "name": "cmbot",
   "description": "A full featured bot for turntable.fm",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/atomjack/cmbot.git"
@@ -25,8 +25,9 @@
     "jquery": ">= 1.6.3",
     "simple-lastfm": "*",
     "dateformat": "*",
-    "prototype": "*",
-    "mysql": "*"
+    "mysql": "*",
+    "sqlite3": "*",
+    "path": "*"
   },
   "devDependencies": {},
   "optionalDependencies": {}

@@ -9,6 +9,7 @@ A full featured bot for turntable.fm
 * Modpm feature lets mods send a message that goes out to all the other mods currently in the room.
 * Automatically awesomes a song if it gets 5 awesomes or 20% of the room's population awesomes - whichever is lowest.
 * Automatically scrobble songs played to last.fm.
+* Automatically save song plays to a mysql or sqlite database.
 * Get last.fm tags for the currently playing song or any artist.
 * Ban any artist from being played in the room. If a DJ attempts to play any song by a banned artist, the bot will immediately escort the DJ down from the decks.
 * Shitlist a user, causing the bot to automatically kick them from the room when they join. Keep those trolls away!
@@ -22,6 +23,10 @@ Triggers are special commands any mod can set that will make the bot say a certa
 ## Setup
 
 First, run this command to install all the needed libraries: `npm install path xml2js querystring crypto dateformat ttapi sprintf http-get jquery ntwitter simple-lastfm`
+If you'd like to log all song plays to mysql, run
+`npm install mysql`
+Or, if you'd like to log all song plays to a sqlite database (this is the easier option), run
+`npm install sqlite3`
 
 Obviously the bot should be a mod of the room it will be in, to be useful.
 
@@ -41,7 +46,8 @@ var mybot = new cmbot({
 		userid: 'xxxx',
 		roomid: 'xxxx'
 	},
-	autodj: true, // Automatically DJ if 2 spots open up
+	queue_enabled: true, // Set to false to never use the queue.
+	autodj: true, // Automatically DJ if 2 spots open up.
 	snag_threshold: 10, // How many votes a song must get for the bot to add it to it's queue.
 	set_limit: 4, // How many songs each person can play before they have to step down from the decks. Set to false for unlimited.
 	master_userid: 'xxx', // Who runs the bot should have extra privileges. Put your userid here.
@@ -58,7 +64,7 @@ var mybot = new cmbot({
 		earliest_scrobble: '' // If you want /plays to add that the number of plays shown is from the date of your first scrobble, put it here, and it will append it ("since _____")
 	},
 	scrobble: true, // Set to false to not have the bot scrobble tracks to last.fm
-	playsMode: 'lastfm', // use either 'lastfm' or 'mysql'
+	playsMode: 'lastfm', // use either 'lastfm' or 'mysql' or 'sqlite'
 	songkick: {
 		api_key: '' // Get an API key here: http://www.songkick.com/developer/
 	},
@@ -71,6 +77,10 @@ var mybot = new cmbot({
 		database: '',
 		user: '',
 		password: ''
+	},
+	sqlite: {
+		enabled: false, // Set to true to log all song plays to a sqlite database
+		file: __dirname + '/mybot.db'
 	},
 	
 	/*
