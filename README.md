@@ -407,6 +407,12 @@ Search the bot's playlist for matching songs. `search_string` must be at least 4
 
 Set the playcount for a particular user.
 
+### setdjtimeout ( val:integer )
+
+** PM Only** 
+
+Set how many minutes each DJ can be idle before given a 1 minute warning, after which time the bot will escort them down from the decks. Default 15 minutes. Set to 0 for no limit.
+
 ### setnext ( val:integer )
 
 **PM Only**
