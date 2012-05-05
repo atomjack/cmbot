@@ -431,9 +431,9 @@ Set your timezone. The bot will display the adjusted time in modpm, and it will 
 
 If the bot is DJ'ing, this command will make the bot skip its song. Otherwise, the bot will say "Please skip this track." in chat.
 
-### shitlist ( username:string reason:string )
+### shitlist ( val:string reason:string )
 
-Add a user to the bot's shitlist. If the user is in the room when the shitlist is set, the bot will kick the user. Every time the user joins the room the bot will automatically kick them. 
+Add a user, by name or userid, to the bot's shitlist. If the user is in the room when the shitlist is set, the bot will kick the user. Every time the user joins the room the bot will automatically kick them. 
 
 ### stfu
 
