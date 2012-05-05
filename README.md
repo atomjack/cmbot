@@ -345,6 +345,12 @@ The bot will kick a user from the room.
 
 The bot will lame the currently playing song.
 
+### modtrigger
+
+**PM Only**
+
+Set a trigger that that is only activated by mods.
+
 ### gettimezone
 
 **PM Only**
@@ -466,6 +472,12 @@ Causes the bot to tweet (if twitter credentials are provided).
 ### unban ( artist:string )
 
 Unban an artist. Usage is the same as /ban.
+
+### unmodtrigger ( trigger:string )
+
+**PM Only** 
+
+Remove a mod trigger.
 
 ### unshitlist ( username:string )
 
