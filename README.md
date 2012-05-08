@@ -2,6 +2,9 @@
 
 A full featured bot for turntable.fm
 
+## Installation
+	npm install cmbot
+
 ## Features
 * If desired, your bot will enforce a queue, as well as a configurable number of songs each DJ is allowed to play before the bot escorts them down, to give others a chance to DJ.
 * If a user on the queue leaves the room, the bot automatically marks them afk, skipping them when announcing who is next in the queue, and automatically marking them unafk when they return. If they don't return within 5 minutes, however, they are removed from the queue.
@@ -23,16 +26,6 @@ Triggers are special commands any mod can set that will make the bot say a certa
 I'd be happy to help you get set up if you run into problems. You can usually find me in the [Chillout Mixer](http://turntable.fm/chillout_mixer_ambient_triphop).
 
 ## Setup
-
-First, run this command to install all the needed libraries: `npm install path xml2js querystring crypto dateformat ttapi sprintf http-get jquery ntwitter simple-lastfm`
-
-If you'd like to log all song plays to mysql, run
-
-`npm install mysql`
-
-Or, if you'd like to log all song plays to a sqlite database (this is the easier option), run
-
-`npm install sqlite3`
 
 Obviously the bot should be a mod of the room it will be in, to be useful.
 
