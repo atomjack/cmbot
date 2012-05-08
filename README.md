@@ -18,7 +18,7 @@ A full featured bot for turntable.fm
 
 ### Triggers
 
-Triggers are special commands any mod can set that will make the bot say a certain phrase. Any user can activate a trigger (to make the bot say the phrase), either in chat or PM. See [trigger](https://github.com/atomjack/cmbot#trigger--keystring-valstring-), [triggerban](https://github.com/atomjack/cmbot#triggerban--usernamestring-) and [triggerlimit](https://github.com/atomjack/cmbot#triggerban--usernamestring-)
+Triggers are special commands any mod can set that will make the bot say a certain phrase. Any user can activate a trigger (to make the bot say the phrase), either in chat or PM. See [trigger](#trigger--keystring-valstring-), [triggerban](#triggerban--usernamestring-) and [triggerlimit](#triggerban--usernamestring-).
 
 I'd be happy to help you get set up if you run into problems. You can usually find me in the [Chillout Mixer](http://turntable.fm/chillout_mixer_ambient_triphop).
 
@@ -349,7 +349,7 @@ The bot will lame the currently playing song.
 
 **PM Only**
 
-Set a trigger that that is only activated by mods.
+Set a trigger that that is only activated by mods. See [trigger](#trigger--keystring-valstring-).
 
 ### gettimezone
 
@@ -449,7 +449,7 @@ Makes the bot cease informational messages for one round. ie, if the message int
 
 **PM Only**
 
-Set a trigger. `/trigger facebook http://www.facebook.com/groups/....` will cause the bot to say `http://www.facebook.com/groups/....` if anyone types `/facebook`, either in chat or in a PM to the bot.
+Set a trigger. `/trigger facebook http://www.facebook.com/groups/....` will cause the bot to say `http://www.facebook.com/groups/....` if anyone types `/facebook`, either in chat or in a PM to the bot. You can also have the bot automatically shorten any url, using google's URL Shortener, by prepending 'shorten:' to the url. For example: `/trigger foo shorten:http://facebook.com` will cause the bot to say `http://goo.gl/mS4A`. Supports multiple URLs, too.
 
 ### triggerban ( username:string )
 
