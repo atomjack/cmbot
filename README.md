@@ -34,7 +34,7 @@ To get the bot's auth, userid, and roomid, see [this link](http://alaingilbert.g
 The bot will create two json files (in the same directory as your script) to store state information, "settings.json" (stores the queue, shitlisted users, triggers, etc) and "djs.json" (id's of users who have dj'd, so a user will only get the introductory PM once). 
 
 ```javascript
-var cmbot = require('./cmbot/');
+var cmbot = require('cmbot');
 var mybot = new cmbot({
 	// This will put the settings & dj files in the same directory where this script is
 	settings_file: __dirname + '/settings.json', 
