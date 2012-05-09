@@ -187,7 +187,7 @@ For the actual command, the `options` object passed to it has the following make
 ## Custom Events
 
 You can program your own logic for when certain turntable events happen. Simply call the 'on' method, like below, after instantiating the bot.
-Events supported: speak, ready, roomChanged, update_votes, newsong, endsong, pmmed, add_dj, rem_dj, update_user, new_moderator, rem_moderator, registered, deregistered, tcpConnect, tcpMessage, tcpEnd, and httpRequest.
+Events supported: speak, ready, roomChanged, update_votes, newsong, endsong, pmmed, add_dj, rem_dj, update_user, new_moderator, rem_moderator, registered, deregistered, booted_user, snagged, nosong, tcpConnect, tcpMessage, tcpEnd, and httpRequest.
 See Alain Gilbert's TTAPI (which this bot uses) for more details on what each event is for at https://github.com/alaingilbert/Turntable-API.
 Note: These events fire after the bot's own logic does.
 
