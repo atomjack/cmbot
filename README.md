@@ -53,6 +53,7 @@ var mybot = new cmbot({
 	ffa: [5], // Array of days of the week for free for all. Sunday = 0, Monday = 1, etc. Set to false for none.
 	ffa_text: 'It\'s Free For All Friday! No Queue today.', // The bot will display this when someone tries to manipulate or show the queue on an FFA day. 
 	timezone: 'PST', // The default timezone for modpm
+	modpm_superusers: true, // Set to false to exclude superusers from modpm
 	lastfm: {
 		enabled: false,
 		username: '',
