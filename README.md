@@ -54,6 +54,7 @@ var mybot = new cmbot({
 	ffa_text: 'It\'s Free For All Friday! No Queue today.', // The bot will display this when someone tries to manipulate or show the queue on an FFA day. 
 	timezone: 'PST', // The default timezone for modpm
 	modpm_superusers: true, // Set to false to exclude superusers from modpm
+	allow_mobile_djs: true, // Set to false to require users to be whitelisted in order to DJ from a mobile device (mods are exempt)
 	lastfm: {
 		enabled: false,
 		username: '',
@@ -351,6 +352,12 @@ Set a trigger that that is only activated by mods. See [trigger](#trigger--keyst
 
 Get your currently set timezone. If not set, modpm will display the time in the timezone the bot is configured as being in (default PST). 
 
+### mobilewhitelist ( username:string )
+
+**PM Only**
+
+Adds a user to the mobile whitelist, allowing them to DJ from a mobile device (android or iphone). Users not on the whitelist will be automatically escorted, and kicked for repeated attempts (3 escorts in less than 10 seconds). Mods are exempt and may always DJ from a mobile device.
+
 ### move ( username:string position:integer )
 
 **PM Only**
@@ -391,7 +398,7 @@ Remove a user from the queue.
 
 **ACL Enforced**
 
-Remove a song from the bot's queue/playlist. Position is the index provided by /searchplaylist.
+Remove a song from the bot's queue/playlist. Position is the index provided by /searchplaylist. If last.fm is enabled, this also 'unloves' the track.
 
 ### searchplaylist ( search_string:string )
 
@@ -472,6 +479,12 @@ Unban an artist. Usage is the same as /ban.
 **PM Only** 
 
 Remove a mod trigger.
+
+### unmobilewhitelist ( username:string )
+
+**PM Only**
+
+Remove a user from the mobile whitelist.
 
 ### unshitlist ( username:string )
 
