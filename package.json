@@ -26,11 +26,12 @@
     "jquery": "*",
     "simple-lastfm": ">= 1.0.3",
     "dateformat": "*",
-    "mysql": "*",
-    "sqlite3": "*",
     "path": "*",
     "jsdom": "*"
   },
   "devDependencies": {},
-  "optionalDependencies": {}
+  "optionalDependencies": {
+	"mysql": "*",
+    "sqlite3": "*"
+  }
 }
