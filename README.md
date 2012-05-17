@@ -167,7 +167,7 @@ mybot.addCommand('beer', {
 
 ```
 
-This will add the /beer command which will prompt the bot to give you (or someone you specify) a beer. The syntax for the command is: addCommand(commandName, object), where the object contains a combination of the above keys.
+Just paste this code at the end of your .js file (make sure it comes after the code from the example). This will add the /beer command which will prompt the bot to give you (or someone you specify) a beer. The syntax for the command is: addCommand(commandName, object), where the object contains a combination of the above keys.
 
 For the actual command, the `options` object passed to it has the following makeup:
 ```javascript
@@ -204,6 +204,8 @@ chilloutmixerbot.on('speak', function(data) {
 ```
 
 The above code will cause the bot to display that url if someone says 'alot' instead of 'a lot':)
+
+As with adding custom commands, just add your custom events at the end of your .js file.
 
 ## User Commands:
 
