@@ -33,6 +33,8 @@ To get the bot's auth, userid, and roomid, see [this link](http://alaingilbert.g
 
 The bot will create two json files (in the same directory as your script) to store state information, "settings.json" (stores the queue, shitlisted users, triggers, etc) and "djs.json" (id's of users who have dj'd, so a user will only get the introductory PM once). 
 
+I'd suggest creating a new directory for your bot, perhaps using the name of your bot. Create a new .js file (perhaps also with the name of your bot, ie chilloutmixerbot.js), consisting of the following content. Set the 3 bot parameters (auth, userid & roomid) and whatever else to have the bot behave as you see fit.
+
 ```javascript
 var cmbot = require('cmbot');
 var mybot = new cmbot({
