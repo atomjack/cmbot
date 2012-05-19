@@ -446,6 +446,10 @@ If the bot is DJ'ing, this command will make the bot skip its song. Otherwise, t
 
 Add a user, by name or userid, to the bot's shitlist. If the user is in the room when the shitlist is set, the bot will kick the user. Every time the user joins the room the bot will automatically kick them. 
 
+### showmobilewhitelist
+
+Show any users from the mobile whitelist who are in the room. The mobile whitelist only contains user id's so only users present in the room are able to be shown.
+
 ### stfu
 
 Makes the bot cease informational messages for one round. ie, if the message interval is 15 minutes, and there are 3 messages to show, the bot will not say them for 45 minutes.
