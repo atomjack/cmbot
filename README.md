@@ -47,6 +47,8 @@ var mybot = new cmbot({
 		userid: 'xxxx',
 		roomid: 'xxxx'
 	},
+	modules_directory: __dirname + '/modules',
+	autoload_modules: true, // If set to true, scans the modules_directory for any .js files and loads any custom commands/events they contain
 	queue_enabled: true, // Set to false to never use the queue.
 	autodj: true, // Automatically DJ if 2 spots open up.
 	snag_threshold: 10, // How many votes a song must get for the bot to add it to it's queue.
@@ -129,12 +131,21 @@ var mybot = new cmbot({
 
 ```
 
-## Custom Commands
+## Dynamic Modules
 
-You can create your own custom commands that your bot will respond to using the addCommand() method. Here is an example:
+You can load custom modules at runtime that contain custom commands and/or events, using the `/loadmodule` command. In order to use custom modules, however, make sure you defined the `modules_directory` setting in your bot's .js file. In the example given above, simply create a `modules` directory in the same directory your bot's .js file is located, and put your modules there.
+
+You can also have your bot autoload any modules it finds by setting the `autoload_modules` option to true (see the setup example above).
+
+Please note:If you have previously used the `addCommand` or `on` methods to add custom commands/events, please switch to using dynamic modules as those methods are deprecated and will be removed in a future version.
+
+### Custom Commands
+
+Your custom module can contain one or more custom commands that your bot will respond to. Simply create a .js file and place it in your modules directory (which you defined in the `modules_directory` option). As an example, create the file beer.js in your modules directory with the following contents:
 
 ```javascript
-mybot.addCommand('beer', {
+var customCommands = {
+	name: 'beer', // This is what the bot will respond to (ie, /beer)
 	command: function(options) {
 		if(!options.pm) {
 			var user;
@@ -144,30 +155,22 @@ mybot.addCommand('beer', {
 			} else {
 				user = '@' + options.cmbot.users[options.userid].name;
 			}
-			options.cmbot.bot.speak("/me gives " + user + " a beer.");
+			options.cmbot.bot.speak("/me taps a keg and gives " + user + " a cold one! *cheers* :beer:");
 		} else {
 			options.cmbot.bot.pm("That command is chat-only.", options.userid);
 		}
 	},
-	// Whether or not this command is runnable by any user. Change to true to restrict it to only room mods.
 	modonly: false,
-	
-	// Whether or not this command is only runnable by PM'ing it to the bot. 
-	// If someone uses it in the chat room, it sends them a PM saying it's only usable in PM.
 	pmonly: false,
-	
-	// Set true to use access controlled lists. The master user will always be able to run any command, 
-	// but if this is set to true, a user may only run the command if the master user has given them 
-	// access to the command (using /addacl). 
-	acl: false, 
-					 
-	hide: true,	// Hide this command from the /help command. Set to false to show it.
-	help: '' // Help text to display when a user is seeking help on the command.
-});
+	hide: true,
+	help: 'Text that shows when you type /help beer.',
+	acl: false // 
+};
 
+exports.customCommands = customCommands;
 ```
 
-Just paste this code at the end of your .js file (make sure it comes after the code from the example). This will add the /beer command which will prompt the bot to give you (or someone you specify) a beer. The syntax for the command is: addCommand(commandName, object), where the object contains a combination of the above keys.
+Then, PM the bot `/loadmodule beer`. The bot will then respond to the /beer command which will prompt the bot to give you (or someone you specify) a beer. You can also do `/unloadmodule beer` to unload the module and have the bot not respond to `/beer` anymore.
 
 For the actual command, the `options` object passed to it has the following makeup:
 ```javascript
@@ -188,24 +191,31 @@ For the actual command, the `options` object passed to it has the following make
 	}
 ```
 
-## Custom Events
+### Custom Events
 
-You can program your own logic for when certain turntable events happen. Simply call the 'on' method, like below, after instantiating the bot.
+You can program your own logic for when certain turntable events happen. For instance, simply add the code like below into a file in your modules directory called `alot.js`.
 Events supported: speak, ready, roomChanged, update_votes, newsong, endsong, pmmed, add_dj, rem_dj, update_user, new_moderator, rem_moderator, registered, deregistered, booted_user, snagged, nosong, tcpConnect, tcpMessage, tcpEnd, and httpRequest.
 See Alain Gilbert's TTAPI (which this bot uses) for more details on what each event is for at https://github.com/alaingilbert/Turntable-API.
 Note: These events fire after the bot's own logic does.
 
 ```javascript
-chilloutmixerbot.on('speak', function(data) {
-	if(data.text.match(/\balot\b/i)) {
-		chilloutmixerbot.bot.speak("http://hyperboleandahalf.blogspot.com/2010/04/alot-is-better-than-you-at-everything.html");
+var customEvents = {
+	on: 'speak',
+	event: function(data) {
+		if(data.text.match(/\balot\b/i)) {
+			chilloutmixerbot.bot.speak("http://hyperboleandahalf.blogspot.com/2010/04/alot-is-better-than-you-at-everything.html");
+		}
 	}
-});
+};
+
+exports.customEvents = customEvents;
 ```
 
-The above code will cause the bot to display that url if someone says 'alot' instead of 'a lot':)
+After doing `/loadmodule alot` The above code will cause the bot to display that url if someone says 'alot' instead of 'a lot':)
 
-As with adding custom commands, just add your custom events at the end of your .js file.
+As with custom commands, you can `/unloadmodule alot` to cancel the bot from reacting to the event.
+
+Also, the `customCommands` and `customEvents` variables can be an array of objects, so you can add multiple commands and events in one file, if you wish.
 
 ## User Commands:
 
@@ -344,6 +354,10 @@ The bot will kick a user from the room.
 
 The bot will lame the currently playing song.
 
+### loadmodule ( file:string )
+
+Load a module to add a custom command or event. `file` is the name of a file, minus the `.js` extension, residing in the `modules_directory` as defined in the bot's options.
+
 ### modtrigger
 
 **PM Only**
@@ -481,6 +495,10 @@ Causes the bot to tweet (if twitter credentials are provided).
 ### unban ( artist:string )
 
 Unban an artist. Usage is the same as /ban.
+
+### unloadmodule ( file:string )
+
+Unload a module, to prevent the bot from responding to custom commands or events. Usage is the same as `/loadmodule`
 
 ### unmodtrigger ( trigger:string )
 
