@@ -201,9 +201,9 @@ Note: These events fire after the bot's own logic does.
 ```javascript
 var customEvents = {
 	on: 'speak',
-	event: function(data) {
+	event: function(cmbot, data) {
 		if(data.text.match(/\balot\b/i)) {
-			chilloutmixerbot.bot.speak("http://hyperboleandahalf.blogspot.com/2010/04/alot-is-better-than-you-at-everything.html");
+			cmbot.bot.speak("http://hyperboleandahalf.blogspot.com/2010/04/alot-is-better-than-you-at-everything.html");
 		}
 	}
 };
@@ -212,6 +212,10 @@ exports.customEvents = customEvents;
 ```
 
 After doing `/loadmodule alot` The above code will cause the bot to display that url if someone says 'alot' instead of 'a lot':)
+
+Also note that the event receives an extra variable before any others that the ttapi does - this variable is your bot's object itself (cmbot, in the above example), which provides you with all the properties and methods of the bot, allowing you to make the bot speak, pm someone, or all kinds of other things.
+
+You can only hook a certain event once, so you should group things together in the same module. If you wanted the bot to do something in addition to the above whenever someone speaks in chat, you wouldn't add another module, you would just group all the logic together in the same module.
 
 As with custom commands, you can `/unloadmodule alot` to cancel the bot from reacting to the event.
 
