@@ -218,7 +218,7 @@ After doing `/loadmodule alot` The above code will cause the bot to display that
 
 Also note that the event receives an extra variable before any others that the ttapi does - this variable is your bot's object itself (cmbot, in the above example), which provides you with all the properties and methods of the bot, allowing you to make the bot speak, pm someone, or all kinds of other things.
 
-You can only hook a certain event once, so you should group things together in the same module. If you wanted the bot to do something in addition to the above whenever someone speaks in chat, you wouldn't add another module, you would just group all the logic together in the same module.
+You can hook the same event in multiple modules. When modules are autoloaded, they are fired in alphabetical order based on the name of the module's .js file. If not autoloaded, they are fired in the order that they are loaded.
 
 As with custom commands, you can `/unloadmodule alot` to cancel the bot from reacting to the event.
 
