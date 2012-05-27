@@ -383,6 +383,14 @@ Get your currently set timezone. If not set, modpm will display the time in the 
 
 Adds a user to the mobile whitelist, allowing them to DJ from a mobile device (android or iphone). Users not on the whitelist will be automatically escorted, and kicked for repeated attempts (3 escorts in less than 10 seconds). Mods are exempt and may always DJ from a mobile device.
 
+### modpm ( val:enum('on', 'off')] )
+
+**PM Only**
+
+**ACL Enforced**
+
+Turn modpm on or off.
+
 ### move ( username:string position:integer )
 
 **PM Only**
