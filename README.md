@@ -56,7 +56,7 @@ var mybot = new cmbot({
 	// If either of the following are set to false, only awesome for the other. If both are set to false, never autobop. If both are set, autobop for whichever is lowest.
 	autobop_threshold_number: 5, // How many other users must awesome before the bot awesomes
 	autobop_threshold_percentage: 20, // The percentage of the room's population that must awesome before the bot awesomes
-	master_userid: 'xxx', // Who runs the bot should have extra privileges. Put your userid here.
+	master_userid: ['xxx'], // Who runs the bot should have extra privileges. Put your userid here. Can be a single userid (a string) or an array of them.
 	ffa: [5], // Array of days of the week for free for all. Sunday = 0, Monday = 1, etc. Set to false for none.
 	ffa_text: 'It\'s Free For All Friday! No Queue today.', // The bot will display this when someone tries to manipulate or show the queue on an FFA day. 
 	timezone: 'PST', // The default timezone for modpm
