@@ -8,11 +8,15 @@
 
 var customEvents = [{
 	on: 'registered',
-	event: function(cmbot, data) {
+	setup: function(cmbot) {
 		if(cmbot.settings.greeting == undefined)
 			cmbot.settings.greeting = true;
 		if(cmbot.settings.greeting_last == undefined)
 			cmbot.settings.greeting_last = {};
+		
+		cmbot.saveSettings();
+	},
+	event: function(cmbot, data) {
 		// If the greeting text has been set, and the greeting is turned on, and it's not the bot that is joining
 		if(cmbot.settings.greeting_text != undefined && cmbot.settings.greeting_text != "" && cmbot.settings.greeting && data.user.userid != cmbot.options.bot.userid) {
 			var greet = true;
@@ -31,8 +35,6 @@ var customEvents = [{
 var customCommands = [{
     name: 'greeting',
 	command: function(options) {
-		if(options.cmbot.settings.greeting == undefined)
-			options.cmbot.settings.greeting = true;
 		var text = "";
 		if(options.arg == "")
 			text = "Greeting is " + (options.cmbot.settings.greeting ? "on" : "off") + ".";

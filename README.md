@@ -204,6 +204,9 @@ Note: These events fire after the bot's own logic does.
 ```javascript
 var customEvents = {
 	on: 'speak',
+	setup: function(cmbot) {
+		// Code in here gets run when the module is loaded. See the example module 'greeting.js'.
+	},
 	event: function(cmbot, data) {
 		if(data.text.match(/\balot\b/i)) {
 			cmbot.bot.speak("http://hyperboleandahalf.blogspot.com/2010/04/alot-is-better-than-you-at-everything.html");
@@ -461,7 +464,7 @@ Set how many minutes each DJ can be idle before given a 1 minute warning, after 
 
 **PM Only**
 
-Display or change the set limit, i.e., how many songs each DJ can play before being escorted down. Set to 0 for unlimited.
+Display or change the set limit, i.e., how many songs each DJ can play before being escorted down. Set to 0 for unlimited. Once set, this overrides set_limit in your main .js file and will persist after the bot restarts.
 
 ### setnext ( val:integer )
 
