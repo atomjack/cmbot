@@ -457,6 +457,12 @@ Set the playcount for a particular user.
 
 Set how many minutes each DJ can be idle before given a 1 minute warning, after which time the bot will escort them down from the decks. Default 15 minutes. Set to 0 for no limit.
 
+### setlimit ( [val:integer] )
+
+**PM Only**
+
+Display or change the set limit, i.e., how many songs each DJ can play before being escorted down. Set to 0 for unlimited.
+
 ### setnext ( val:integer )
 
 **PM Only**
