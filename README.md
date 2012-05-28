@@ -262,7 +262,7 @@ Show who is in the queue.
 
 Show how many songs each DJ has played.
 
-### plays ( [artist:string] [> track:string] )
+### plays ( [artist:string] [- track:string] )
 
 Show how many times a song has been played. Depending on configuration, can use either last.fm stats or internal stats that are stored in a mysql database.
 
@@ -329,6 +329,10 @@ The bot will awesome the currently playing track.
 
 Ban an artist. If a DJ attempts to play a song by a banned artist, the bot will immediately escort them from the decks and warn them that the artist is banned.
 
+### bansong ( [artist:string - song:string] )
+
+Ban a song. If a DJ attempts to play a banned song, the bot will give them 15 seconds to skip or else be escorted off the decks. If no argument is supplied, the currently playing song is banned, and the 15 second warning is given. Artist and song arguments are case insensitive, but must match the spelling of the id3 tags exactly.
+ 
 ### bannedartists
 
 Show the list of banned artists. If this list gets long enough, it will cut off when displayed in chat, but won't be in PM.
@@ -510,6 +514,10 @@ Causes the bot to tweet (if twitter credentials are provided).
 ### unban ( artist:string )
 
 Unban an artist. Usage is the same as /ban.
+
+### unbansong ( [artist:string - song:string] )
+
+Unban a song. If this command is given with no arguments after /bansong is given (also with no arguments) within the 15 second warning window, the warning is cancelled and the DJ will not be escorted off the decks.
 
 ### unloadmodule ( file:string )
 
