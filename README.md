@@ -277,6 +277,10 @@ If a DJ needs to refresh their browser, they can use the /refresh command to not
 
 Remove yourself from the queue.
 
+### settwitter ( username:string )
+
+Set your twitter username, so the bot can @mention you when it tweets song plays. The bot will will respond with a randomly generated 32 character string which you must then tweet, after which you use the /verifytwitter command to verify your username.
+
 ### shortenurl ( url:string )
 
 Use google's URL Shortening service to get a short version of any url.
@@ -292,6 +296,10 @@ Get last.fm tags for the currently playing song (`/tags`) or a particular artist
 ### uptime
 
 Show how long the bot has been running for.
+
+### verifytwitter
+
+Verify your twitter username, set with /settwitter. The bot will look up your most recent tweet for the randomly generated string it sent you, and if it finds it, saves your username.
 
 
 ## Mod Commands:
