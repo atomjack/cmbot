@@ -348,6 +348,18 @@ Ban a song. If a DJ attempts to play a banned song, the bot will give them 15 se
 
 Show the list of banned artists. If this list gets long enough, it will cut off when displayed in chat, but won't be in PM.
 
+### deckshitlist ( username:string [reason:string] )
+
+Ban a user from being able to DJ. I will automatically escort any banned user from the decks. If a reason is specified, I will tell the user the reason when I escort them.
+
+**PM Only**
+
+### deckunshitlist ( username:string )
+
+Remove a user from the Deck shitlist, allowing them to DJ again.
+
+**PM Only** 
+
 ### dj
 
 Makes the bot DJ. If there are no open spots, the bot add itself to the queue (unless it's not an FFA Day). If there are open spots, the bot will simply step up to the decks. See notes on how the bot adds songs to it's queue for more details.
