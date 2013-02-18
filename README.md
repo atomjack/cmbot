@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/atomjack/cmbot.png)](http://travis-ci.org/atomjack/cmbot)
 #CMBot
 
 A full featured bot for turntable.fm
