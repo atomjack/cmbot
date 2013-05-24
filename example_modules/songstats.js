@@ -11,12 +11,80 @@ var customEvents = [{
 			cmbot.session.snags = 0;
 		if(cmbot.settings.songstats == undefined)
 			cmbot.settings.songstats = true;
+		if(cmbot.session.lastsongstats == undefined)
+			cmbot.session.lastsongstats = {};
 		
 		if(cmbot.settings.songstats) {
 			var song = data.room.metadata.current_song;
-			cmbot.bot.speak("Stats for " + song.metadata.song + " by " + song.metadata.artist + ": " + data.room.metadata.upvotes + " up, " + data.room.metadata.downvotes + " down, " + cmbot.session.snags + " snags.");
+//			cmbot.bot.speak("Stats for " + song.metadata.song + " by " + song.metadata.artist + ": :arrow_down:" + data.room.metadata.downvotes + " :arrow_up:" + data.room.metadata.upvotes + " :heart:" + cmbot.session.snags);
+			cmbot.session.lastsongstats = {
+				upvotes: data.room.metadata.upvotes,
+				downvotes: data.room.metadata.downvotes,
+				snags: cmbot.session.snags
+			};
 		}
 		cmbot.session.snags = 0;
+	}
+},
+{
+	on: 'newsong',
+	event: function(cmbot, data) {
+		artist = cmbot.currentSong.room.metadata.current_song.metadata.artist;
+		track = cmbot.currentSong.room.metadata.current_song.metadata.song;
+		if(cmbot.settings.songstats) {
+			 cmbot.lastfm.getPlays({
+				artist: artist,
+				track: track,
+				callback: function(result) {
+	console.log("result: ", result);
+					var plays = result.plays;
+					var mysql = cmbot.getMysqlClient();
+                mysql.query("SELECT s.artist, s.track, sl.starttime " +
+                                "from song s " +
+                                "join songlog sl on sl.songid = s.id " +
+                                "where lower(artist) = '" + mysql_real_escape_string(artist.toLowerCase()) + "' " +
+                                (track !== false ? "and lower(track) = '" + mysql_real_escape_string(track.toLowerCase()) + "' " : "") +
+                                "order by sl.starttime desc " +
+                                "limit 1;",
+                                function selectCb(err, results, fields) {
+                                        console.log("results: ", results);
+					var time = [];
+                                        if(results.length == 0) {
+                                        } else {
+                                                var now = new Date();
+                                                var diff = now.getTime() - new Date(results[0].starttime).getTime();
+                                                var x = diff / 1000;
+                                                var seconds = Math.floor(((x % 86400) % 3600) % 60);
+                                                var minutes = Math.floor(((x % 86400) % 3600) / 60);
+                                                var hours = Math.floor((x % 86400) / 3600);
+                                                var days = Math.floor(x / 86400);
+                                                if(days > 1)
+                                                        time.push(days + ' days');
+                                                else {
+                                                        if(days == 1)
+                                                                time.push(days + ' day');
+                                                        if(hours > 0)
+                                                                time.push((hours + " hour") + (hours == 1 ? "" : "s"));
+                                                        else if(minutes > 0)
+                                                                time.push(minutes + ' minutes');
+                                                        else
+                                                                time.push(seconds + ' seconds');
+                                                }
+					}
+					var str = "Last Song: :thumbsup: " + cmbot.session.lastsongstats.upvotes + " :thumbsdown: " + cmbot.session.lastsongstats.downvotes + " :heart: " + cmbot.session.lastsongstats.snags;
+					var str2 = "This Song: :repeat: " + result.plays + " plays";
+					if(time.length > 0)
+						str2 += " :arrow_forward: " + time.join(', ') + " ago";
+					console.log(str);
+					console.log(str2);
+					cmbot.bot.speak(str, function() {
+						cmbot.bot.speak(str2);
+					});
+				}
+			);
+				}
+			});
+		}
 	}
 },
 {
@@ -30,7 +98,7 @@ var customEvents = [{
 ];
 
 var customCommands = [{
-    name: 'songstats',
+	name: 'songstats',
 	command: function(options) {
 		if(options.cmbot.settings.songstats == undefined)
 			options.cmbot.settings.songstats = true;
@@ -61,7 +129,43 @@ var customCommands = [{
 	modonly: true,
 	pmonly: true,
 	help: "Turn song stats (the bot will tell the number of awesomes, lames, and snags at the end of each song) on or off."
+},
+{
+    name: 'songinfo',
+    command: function(options) {
+    	var song = options.cmbot.currentSong.room.metadata.current_song;
+    	options.cmbot.speakOrPM("Stats for " + song.metadata.song + " by " + song.metadata.artist + ": :arrow_down:" + options.cmbot.session.votes.down.length + " :arrow_up:" + options.cmbot.session.votes.up.length + " :heart:" + (options.cmbot.session.snags ? options.cmbot.session.snags : '0'), options.pm, options.userid);
+    },
+    modonly: false,
+    pmonly: false,
+    help: 'Get song stats for the currently playing song.'	
 }];
 
 exports.customCommands = customCommands;
 exports.customEvents = customEvents;
+
+
+function mysql_real_escape_string (str) {
+    return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
+        switch (char) {
+            case "\0":
+                return "\\0";
+            case "\x08":
+                return "\\b";
+            case "\x09":
+                return "\\t";
+            case "\x1a":
+                return "\\z";
+            case "\n":
+                return "\\n";
+            case "\r":
+                return "\\r";
+            case "\"":
+            case "'":
+            case "\\":
+            case "%":
+                return "\\"+char; // prepends a backslash to backslash, percent,
+                                  // and double/single quotes
+        }
+    });
+}
