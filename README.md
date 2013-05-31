@@ -9,7 +9,7 @@ A full featured bot for turntable.fm
 * If desired, your bot will enforce a queue, as well as a configurable number of songs each DJ is allowed to play before the bot escorts them down, to give others a chance to DJ.
 * If a user on the queue leaves the room, the bot automatically marks them afk, skipping them when announcing who is next in the queue, and automatically marking them unafk when they return. If they don't return within 5 minutes, however, they are removed from the queue.
 * Can automatically add a song to it's queue if it gets enough votes, and mods can make the bot DJ. When the bot steps up to the decks, it will randomly put a song at the top of it's queue, and again once it finishes playing the song. This way it always plays a random song.
-* Modpm feature lets mods send a message that goes out to all the other mods currently in the room.
+* Modpm feature lets mods send a message that goes out to all the other mods currently in the room. Mods can also choose to participate in mod chat when they are out of the room (a mod must enable this with the /remotechat command, first).
 * Automatically awesomes a song if it gets 5 awesomes or 20% of the room's population awesomes - whichever is lowest.
 * Automatically scrobble songs played to last.fm.
 * Automatically save song plays to a mysql or sqlite database.
@@ -90,7 +90,8 @@ var mybot = new cmbot({
 		enabled: false, // Set to true to log all song plays to a sqlite database
 		file: __dirname + '/mybot.db'
 	},
-	
+	remotechat: true, // Set to false to disable remote mod chat
+
 	/*
 	 * Messages:
 	 * This should be an array of text that the bot will say in the chat room periodically, such as reminding 
@@ -410,7 +411,13 @@ Get your currently set timezone. If not set, modpm will display the time in the 
 
 Adds a user to the mobile whitelist, allowing them to DJ from a mobile device (android or iphone). Users not on the whitelist will be automatically escorted, and kicked for repeated attempts (3 escorts in less than 10 seconds). Mods are exempt and may always DJ from a mobile device.
 
-### modpm ( val:enum('on', 'off')] )
+### modchat ( [val:enum('on', 'off')] )
+
+**PM Only**
+
+Enable or disable modchat for an individual moderator. If modpm_superusers is `false`, superusers by default will not see modchat. The superuser can use this command to enable modchat for themselves.
+
+### modpm ( [val:enum('on', 'off')] )
 
 **PM Only**
 
@@ -445,6 +452,12 @@ Set the bot's profile info. Usage: '/profile <profile field> <some text>'. Avail
 **ACL Enforced**
 
 Remove access to a command for a certain user. 
+
+### remotechat ( [val:enum('on', 'off')] )
+
+**PM Only**
+
+Set remote mod chat on or off for yourself. When it is on (and the bot's administrator hasn't disabled remote mod chat), a mod can see/participate in mod chat even when they are out of the room.
 
 ### remove ( username:string )
 
