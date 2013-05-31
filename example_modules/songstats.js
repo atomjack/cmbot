@@ -16,7 +16,6 @@ var customEvents = [{
 		
 		if(cmbot.settings.songstats) {
 			var song = data.room.metadata.current_song;
-//			cmbot.bot.speak("Stats for " + song.metadata.song + " by " + song.metadata.artist + ": :arrow_down:" + data.room.metadata.downvotes + " :arrow_up:" + data.room.metadata.upvotes + " :heart:" + cmbot.session.snags);
 			cmbot.session.lastsongstats = {
 				upvotes: data.room.metadata.upvotes,
 				downvotes: data.room.metadata.downvotes,
@@ -36,43 +35,43 @@ var customEvents = [{
 				artist: artist,
 				track: track,
 				callback: function(result) {
-	console.log("result: ", result);
+				console.log("result: ", result);
 					var plays = result.plays;
 					var mysql = cmbot.getMysqlClient();
-                mysql.query("SELECT s.artist, s.track, sl.starttime " +
-                                "from song s " +
-                                "join songlog sl on sl.songid = s.id " +
-                                "where lower(artist) = '" + mysql_real_escape_string(artist.toLowerCase()) + "' " +
-                                (track !== false ? "and lower(track) = '" + mysql_real_escape_string(track.toLowerCase()) + "' " : "") +
-                                "order by sl.starttime desc " +
-                                "limit 1;",
-                                function selectCb(err, results, fields) {
-                                        console.log("results: ", results);
-					var time = [];
-                                        if(results.length == 0) {
-                                        } else {
-                                                var now = new Date();
-                                                var diff = now.getTime() - new Date(results[0].starttime).getTime();
-                                                var x = diff / 1000;
-                                                var seconds = Math.floor(((x % 86400) % 3600) % 60);
-                                                var minutes = Math.floor(((x % 86400) % 3600) / 60);
-                                                var hours = Math.floor((x % 86400) / 3600);
-                                                var days = Math.floor(x / 86400);
-                                                if(days > 1)
-                                                        time.push(days + ' days');
-                                                else {
-                                                        if(days == 1)
-                                                                time.push(days + ' day');
-                                                        if(hours > 0)
-                                                                time.push((hours + " hour") + (hours == 1 ? "" : "s"));
-                                                        else if(minutes > 0)
-                                                                time.push(minutes + ' minutes');
-                                                        else
-                                                                time.push(seconds + ' seconds');
-                                                }
+					mysql.query("SELECT s.artist, s.track, sl.starttime " +
+						"from song s " +
+						"join songlog sl on sl.songid = s.id " +
+						"where lower(artist) = '" + mysql_real_escape_string(artist.toLowerCase()) + "' " +
+						(track !== false ? "and lower(track) = '" + mysql_real_escape_string(track.toLowerCase()) + "' " : "") +
+						"order by sl.starttime desc " +
+						"limit 1;",
+						function selectCb(err, results, fields) {
+							console.log("results: ", results);
+							var time = [];
+							if(results.length == 0) {
+							} else {
+								var now = new Date();
+								var diff = now.getTime() - new Date(results[0].starttime).getTime();
+								var x = diff / 1000;
+								var seconds = Math.floor(((x % 86400) % 3600) % 60);
+								var minutes = Math.floor(((x % 86400) % 3600) / 60);
+								var hours = Math.floor((x % 86400) / 3600);
+								var days = Math.floor(x / 86400);
+								if(days > 1)
+										time.push(days + ' days');
+								else {
+									if(days == 1)
+										time.push(days + ' day');
+									if(hours > 0)
+										time.push((hours + " hour") + (hours == 1 ? "" : "s"));
+									else if(minutes > 0)
+										time.push(minutes + ' minutes');
+									else
+										time.push(seconds + ' seconds');
+								}
 					}
 					var str = "Last Song: :thumbsup: " + cmbot.session.lastsongstats.upvotes + " :thumbsdown: " + cmbot.session.lastsongstats.downvotes + " :heart: " + cmbot.session.lastsongstats.snags;
-					var str2 = "This Song: :repeat: " + result.plays + " plays";
+					var str2 = "This Song: :repeat: " + (result.success === true ? result.plays : '0') + " plays";
 					if(time.length > 0)
 						str2 += " :arrow_forward: " + time.join(', ') + " ago";
 					console.log(str);
@@ -164,7 +163,7 @@ function mysql_real_escape_string (str) {
             case "'":
             case "\\":
             case "%":
-                return "\\"+char; // prepends a backslash to backslash, percent,
+                return "\\"+ char; // prepends a backslash to backslash, percent,
                                   // and double/single quotes
         }
     });
