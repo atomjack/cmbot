@@ -473,6 +473,12 @@ Remove a user from the queue.
 
 Remove a song from the bot's queue/playlist. Position is the index provided by /searchplaylist. If last.fm is enabled, this also 'unloves' the track.
 
+### retrigger ( key:string val:string )
+
+**PM Only**
+
+Update an existing trigger. Usage is the same as /trigger.
+
 ### searchplaylist ( search_string:string )
 
 **PM Only**
