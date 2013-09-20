@@ -3,16 +3,24 @@ var showtriggers = {
     command: function(options) {
 		if(options.arg == '') {
 		var triggers_list = '';
+		var count = 0;
+		var trigs = [];
 			for(var trigger in options.cmbot.settings.triggers) {
-				triggers_list += options.cmbot.settings.triggers[0] +", ";
-				//console.log("Trigger is: " + trigger_list );
+//				triggers_list += trigger +", ";
+				trigs.push(trigger)
+				count++;
 			}
-		triggers_list += "Total triggers: " + options.cmbot.settings.triggers.length;
+		//sort the trigger alphabetically! props to @dRaves for the help
+		trigs.sort();
+		for (var i = 0; i < trigs.length; i++) {
+			triggers_list += trigs[i] + ', ';
+		}
+		triggers_list += "Total triggers: " + count;
 		options.cmbot.bot.pm(triggers_list, options.userid);
 		}
 		// else looking for specific trigger here FIXME
 	},
-    modonly: false,
+    modonly: true,
     pmonly: true,
     hide: false,
     help: 'Shows current triggers - e.g. /showtriggers',
