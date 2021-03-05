@@ -2,7 +2,11 @@
   "name": "cmbot",
   "description": "A full featured bot for turntable.fm",
   "version": "0.9.7",
-  "keywords": ["turntable.fm", "turntable", "stickybits"],
+  "keywords": [
+    "turntable.fm",
+    "turntable",
+    "stickybits"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/atomjack/cmbot.git"
@@ -15,10 +19,10 @@
   "engines": {
     "node": "*"
   },
-  "dependencies" : {
-  	"ttapi": "*",
-  	"sprintf": "*",
-  	"http-get": "*",
+  "dependencies": {
+    "ttapi": "*",
+    "sprintf": "*",
+    "http-get": "*",
     "crypto": ">= 0.0.3",
     "xml2js": ">= 0.1.13",
     "querystring": ">= 0.1.0",
@@ -31,7 +35,7 @@
   },
   "devDependencies": {},
   "optionalDependencies": {
-	"mysql": ">= 2.0.0",
+    "mysql": ">= 2.0.0",
     "sqlite3": "*"
   }
 }
