@@ -1,7 +1,7 @@
 {
   "name": "cmbot",
   "description": "A full featured bot for turntable.fm",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "keywords": [
     "turntable.fm",
     "turntable",
@@ -20,18 +20,19 @@
     "node": "*"
   },
   "dependencies": {
-    "ttapi": "*",
-    "sprintf": "*",
-    "http-get": "*",
     "crypto": ">= 0.0.3",
-    "xml2js": ">= 0.1.13",
-    "querystring": ">= 0.1.0",
-    "ntwitter": "*",
-    "jquery": "*",
-    "simple-lastfm": ">= 1.0.3",
     "dateformat": "*",
+    "http-get": "*",
+    "jquery": "*",
+    "jsdom": "*",
+    "node-url-shortener": "^1.1.11",
+    "ntwitter": "*",
     "path": "*",
-    "jsdom": "*"
+    "querystring": ">= 0.1.0",
+    "simple-lastfm": "^1.0.6",
+    "sprintf": "*",
+    "ttapi": "^4.0.1",
+    "xml2js": ">= 0.1.13"
   },
   "devDependencies": {},
   "optionalDependencies": {

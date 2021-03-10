@@ -27,7 +27,7 @@ Due to turntable.fm shuttering, there's no longer any reason to use this bot. Th
 
 Triggers are special commands any mod can set that will make the bot say a certain phrase. Any user can activate a trigger (to make the bot say the phrase), either in chat or PM. See [trigger](#trigger--keystring-valstring-), [triggerban](#triggerban--usernamestring-) and [triggerlimit](#triggerban--usernamestring-).
 
-I'd be happy to help you get set up if you run into problems. You can usually find me in the [Chillout Mixer](http://turntable.fm/chillout_mixer_ambient_triphop).
+I'd be happy to help you get set up if you run into problems. You can usually find me in the [Chillout Mixer](https://turntable.fm/chillout_mixer).
 
 ## Setup
 
