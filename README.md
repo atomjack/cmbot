@@ -1,10 +1,6 @@
-#CMBot
+# CMBot
 
 A full featured bot for turntable.fm
-
-## Attention
-
-Due to turntable.fm shuttering, there's no longer any reason to use this bot. Thanks for using it!
 
 ## Installation
 	npm install cmbot
