@@ -230,6 +230,10 @@ Also, the `customCommands` and `customEvents` variables can be an array of objec
 
 ## User Commands:
 
+### about
+
+Display information about cmbot, including this github repository URL.
+
 ### addme
 
 Add yourself to the queue. If you are already in the queue, it will tell you what position you are in.
@@ -258,10 +262,6 @@ The bot will fan the user.
 
 Get a list of commands a user has access to, as well as see more specific help for a command (ie, `/help queue`). If a user is not allowed to run a command, they will not see that command in the list the bot shows them (ie, regular users will not see any mod commands listed).
 
-### queue
-
-Show who is in the queue.
-
 ### playcount
 
 Show how many songs each DJ has played.
@@ -269,6 +269,10 @@ Show how many songs each DJ has played.
 ### plays ( [artist:string] [- track:string] )
 
 Show how many times a song has been played. Depending on configuration, can use either last.fm stats or internal stats that are stored in a mysql database.
+
+### queue
+
+Show who is in the queue.
 
 ### refresh
 
@@ -325,6 +329,12 @@ Add access to a command to a user.
 
 Show or enable/disable autodj.
 
+### autodjlimit ( [val:integer] )
+
+**PM Only**
+
+Display/set how many spots need to be free before the bot will autodj. Omit a value to see the current setting.
+
 ### avatar ( [val:enum('chinesegirl', 'greengirl', 'redheadgirl', 'gingergirl', 'whiteboy', 'tangirl', 'tanboy', 'gingerboy', 'blackboy', 'greenbear', 'greybear', 'alienbear', 'aquabear', 'maroonbear', 'orangebear', 'blackbear', 'bluebear', 'lightbluecat', 'greencat', 'redcat', 'blondesuperboy', 'redheadsuperboy', 'hornedsuperboy', 'gorilla', 'boymonkey', 'girlmonkey', 'spaceman1', 'spaceman2', 'spaceman3', 'spaceman4', 'spaceman5', 'spaceman6', 'spaceman7', 'daftpunk1', 'daftpunk2')] )
 
 **PM Only** 
@@ -341,14 +351,14 @@ The bot will awesome the currently playing track.
 
 Ban an artist. If a DJ attempts to play a song by a banned artist, the bot will immediately escort them from the decks and warn them that the artist is banned.
 
-### bansong ( [artist:string - song:string] )
-
-Ban a song. If a DJ attempts to play a banned song, the bot will give them 15 seconds to skip or else be escorted off the decks. If no argument is supplied, the currently playing song is banned, and the 15 second warning is given. Artist and song arguments are case insensitive, but must match the spelling of the id3 tags exactly.
- 
 ### bannedartists
 
 Show the list of banned artists. If this list gets long enough, it will cut off when displayed in chat, but won't be in PM.
 
+### bansong ( [artist:string - song:string] )
+
+Ban a song. If a DJ attempts to play a banned song, the bot will give them 15 seconds to skip or else be escorted off the decks. If no argument is supplied, the currently playing song is banned, and the 15 second warning is given. Artist and song arguments are case insensitive, but must match the spelling of the id3 tags exactly.
+ 
 ### deckshitlist ( username:string [reason:string] )
 
 Ban a user from being able to DJ. I will automatically escort any banned user from the decks. If a reason is specified, I will tell the user the reason when I escort them.
@@ -375,11 +385,23 @@ Make the bot say something in chat. To have the bot do an action, just use `/ech
 
 Show or enable/disable queue enforcement.
 
+### front ( username:string )
+
+**PM Only** 
+
+Move a user to the front of the queue.
+
 ### getnext
 
 **PM Only**
 
 Get the next X number of songs in the bot's queue. The number X is either the number in set_limit (ie, how many songs each DJ can play for their turn), or if that is set to false, 5.
+
+### gettimezone
+
+**PM Only**
+
+Get your currently set timezone. If not set, modpm will display the time in the timezone the bot is configured as being in (default PST). 
 
 ### kick ( username:string [reason:string] )
 
@@ -398,12 +420,6 @@ Load a module to add a custom command or event. `file` is the name of a file, mi
 **PM Only**
 
 Set a trigger that that is only activated by mods. See [trigger](#trigger--keystring-valstring-).
-
-### gettimezone
-
-**PM Only**
-
-Get your currently set timezone. If not set, modpm will display the time in the timezone the bot is configured as being in (default PST). 
 
 ### mobilewhitelist ( username:string )
 
@@ -519,13 +535,13 @@ Move a song to the top of the bot's queue. `val` is the index returned by /searc
 
 Set your timezone. The bot will display the adjusted time in modpm, and it will adjust for daylight savings time automatically.
 
-### skip
-
-If the bot is DJ'ing, this command will make the bot skip its song. Otherwise, the bot will say "Please skip this track." in chat.
-
 ### shitlist ( val:string reason:string )
 
 Add a user, by name or userid, to the bot's shitlist. If the user is in the room when the shitlist is set, the bot will kick the user. Every time the user joins the room the bot will automatically kick them. 
+
+### skip
+
+If the bot is DJ'ing, this command will make the bot skip its song. Otherwise, the bot will say "Please skip this track." in chat.
 
 ### showmobilewhitelist
 
