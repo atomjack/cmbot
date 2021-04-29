@@ -1,7 +1,7 @@
 {
   "name": "cmbot",
   "description": "A full featured bot for turntable.fm",
-  "version": "0.9.9",
+  "version": "0.9.10",
   "keywords": [
     "turntable.fm",
     "turntable",
@@ -23,7 +23,6 @@
     "crypto": ">= 0.0.3",
     "dateformat": "*",
     "http-get": "*",
-    "jquery": "*",
     "jsdom": "*",
     "node-url-shortener": "^1.1.11",
     "ntwitter": "*",
